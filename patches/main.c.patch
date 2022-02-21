@@ -1,0 +1,86 @@
+--- main.c	2021-12-17 14:35:46.481026964 +0530
++++ main-patched.c	2021-12-17 14:38:50.096990799 +0530
+@@ -136,11 +136,12 @@
+ 
+ EFI_STATUS efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) {
+ 	InitializeLib(ImageHandle, SystemTable);
+-	Print(L"String blah blah blah \n\r");
++	Print(L"Loading ElectroOS\n\r");
+ 
+ 	EFI_FILE* Kernel = LoadFile(NULL, L"kernel.elf", ImageHandle, SystemTable);
+ 	if (Kernel == NULL){
+-		Print(L"Could not load kernel \n\r");
++		Print(L"Could not load kernel! Aborting..\n\r");
++		while(1);
+ 	}
+ 	else{
+ 		Print(L"Kernel Loaded Successfully \n\r");
+@@ -167,7 +168,7 @@
+ 		header.e_version != EV_CURRENT
+ 	)
+ 	{
+-		Print(L"kernel format is bad\r\n");
++		Print(L"kernel header is bad, please redownload or recompile! Aborting..\r\n"); while(1);
+ 	}
+ 	else
+ 	{
+@@ -203,12 +204,12 @@
+ 		}
+ 	}
+ 
+-	Print(L"Kernel Loaded\n\r");
++	Print(L"Kernel Loaded! Loading fonts...\n\r");
+ 	
+-
+-	PSF1_FONT* newFont = LoadPSF1Font(NULL, L"zap-light16.psf", ImageHandle, SystemTable);
++	PSF1_FONT* newFont = LoadPSF1Font(NULL, L"font.psf", ImageHandle, SystemTable);
+ 	if (newFont == NULL){
+-		Print(L"Font is not valid or is not found\n\r");
++		Print(L"Font is not valid or is not found! Aborting..\n\r");
++		while(1);
+ 	}
+ 	else
+ 	{
+@@ -218,23 +219,22 @@
+ 
+ 	Framebuffer* newBuffer = InitializeGOP();
+ 
+-	Print(L"Base: 0x%x\n\rSize: 0x%x\n\rWidth: %d\n\rHeight: %d\n\rPixelsPerScanline: %d\n\r", 
++	Print(L"Base: 0x%x\n\rSize: 0x%x\n\rWidth: %d\n\rHeight: %d\n\rPixelsPerScanline: %d\n\rBooting ElectroOS...", 
+ 	newBuffer->BaseAddress, 
+ 	newBuffer->BufferSize, 
+ 	newBuffer->Width, 
+ 	newBuffer->Height, 
+ 	newBuffer->PixelsPerScanLine);
++	uefi_call_wrapper(SystemTable->ConOut->ClearScreen, 1, SystemTable->ConOut);
+ 
+ 	EFI_MEMORY_DESCRIPTOR* Map = NULL;
+ 	UINTN MapSize, MapKey;
+ 	UINTN DescriptorSize;
+ 	UINT32 DescriptorVersion;
+ 	{
+-		
+ 		SystemTable->BootServices->GetMemoryMap(&MapSize, Map, &MapKey, &DescriptorSize, &DescriptorVersion);
+ 		SystemTable->BootServices->AllocatePool(EfiLoaderData, MapSize, (void**)&Map);
+ 		SystemTable->BootServices->GetMemoryMap(&MapSize, Map, &MapKey, &DescriptorSize, &DescriptorVersion);
+-
+ 	}
+ 
+ 	EFI_CONFIGURATION_TABLE* configTable = SystemTable->ConfigurationTable;
+@@ -245,7 +245,6 @@
+ 		if (CompareGuid(&configTable[index].VendorGuid, &Acpi2TableGuid)){
+ 			if (strcmp((CHAR8*)"RSD PTR ", (CHAR8*)configTable->VendorTable, 8)){
+ 				rsdp = (void*)configTable->VendorTable;
+-				//break;
+ 			}
+ 		}
+ 		configTable++;
+@@ -261,6 +260,8 @@
+ 	bootInfo.mMapDescSize = DescriptorSize;
+ 	bootInfo.rsdp = rsdp;
+ 
++	uefi_call_wrapper(SystemTable->ConOut->ClearScreen, 1, SystemTable->ConOut);
++
+ 	SystemTable->BootServices->ExitBootServices(ImageHandle, MapKey);
+ 
+ 	KernelStart(&bootInfo);
