@@ -6,9 +6,9 @@
 #include "../memory/paging/PageFrameAllocator.h"
 
 struct UtilClasses {
-    Print print;
-    MouseRenderer mouseRenderer;
-    PageFrameAllocator pageFrameAlloc;
+    Print* print;
+    MouseRenderer* mouseRenderer;
+    PageFrameAllocator* pageFrameAlloc;
 };
 
 const char* intToString(int64_t value);

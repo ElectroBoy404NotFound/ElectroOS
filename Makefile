@@ -95,7 +95,7 @@ patchnd:
 	@patch bootloader/main.c patches/main.c.patch
 	@patch startup.nsh patches/startup.nsh.patch
 run:
-	@qemu-system-x86_64 -drive file=output/ElectroOS.img -s -m 4G -cpu qemu64 -drive if=pflash,format=raw,unit=0,file="OVMFbin/OVMF_CODE-pure-efi.fd",readonly=on -drive if=pflash,format=raw,unit=1,file="OVMFbin/OVMF_VARS-pure-efi.fd" -net none -machine q35
+	@qemu-system-x86_64 -drive file=output/ElectroOS.img -s -m 256M -cpu qemu64 -drive if=pflash,format=raw,unit=0,file="OVMFbin/OVMF_CODE-pure-efi.fd",readonly=on -drive if=pflash,format=raw,unit=1,file="OVMFbin/OVMF_VARS-pure-efi.fd" -net none -machine q35
 clean:
 	@rm -rf .vscode      || true
 	@rm -rf gnu-efi		 || true

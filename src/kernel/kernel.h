@@ -61,7 +61,7 @@ UtilClasses initlize(BootInfo* bootinfo) {
 
     PageTableManager pageTableManager = PageTableManager(PML4);
     
-    UtilClasses rval = {print, mr, pageFrameAlloca};
+    UtilClasses rval = {&print, &mr, &pageFrameAlloca};
 
     for (uint64_t t = 0; t < getMemorySize(bootinfo->mMap, mMapEntries, bootinfo->mMapDescSize); t+= 0x1000)
         pageTableManager.MapMemory((void*)t, (void*)t, rval);
@@ -110,16 +110,16 @@ UtilClasses initlize(BootInfo* bootinfo) {
     keyboard.init(&rval);
     panic.init(&rval);
 
-    // ACPI::SDTHeader* xsdt = (ACPI::SDTHeader*)(bootinfo->rsdp->XSDTAddress);
+    ACPI::SDTHeader* xsdt = (ACPI::SDTHeader*)(bootinfo->rsdp->XSDTAddress);
     
-    // ACPI::MCFGHeader* mcfg = (ACPI::MCFGHeader*)ACPI::FindTable(xsdt, (char*)"MCFG");
+    ACPI::MCFGHeader* mcfg = (ACPI::MCFGHeader*)ACPI::FindTable(xsdt, (char*)"MCFG");
 
-    // for (int t = 0; t < 4; t++){
-    //     print.putChar(mcfg->Header.Signature[t]);
-    // }
-    // print.println("");
+    for (int t = 0; t < 4; t++){
+        print.putChar(mcfg->Header.Signature[t]);
+    }
+    print.println("");
 
-    // PCI::EnumeratePCI(mcfg, rval, pageTableManager);
+    PCI::EnumeratePCI(mcfg, rval, pageTableManager);
 
     outb(PIC1_DATA, 0b11111001);
     outb(PIC2_DATA, 0b11101111);

@@ -12,9 +12,9 @@ namespace PCI {
         if (pciDeviceHeader->DeviceID == 0) return;
         if (pciDeviceHeader->DeviceID == 0xFFFF) return;
 
-        utils.print.print(hexToString(pciDeviceHeader->VendorID));
-        utils.print.print(" ");
-        utils.print.println(hexToString(pciDeviceHeader->DeviceID));
+        utils.print->print(hexToString(pciDeviceHeader->VendorID));
+        utils.print->print(" ");
+        utils.print->println(hexToString(pciDeviceHeader->DeviceID));
     }
 
     void EnumerateDevice(uint64_t busAddress, uint64_t device, UtilClasses utils, PageTableManager ptm){

@@ -116,12 +116,12 @@ void Mouse::process() {
         MousePosition.Y += yN ? 255 : -255;
 
     if (MousePosition.X < 0) MousePosition.X = 0;
-    if (MousePosition.X > utils->print.getFramebuffer()->Width-8) MousePosition.X = utils->print.getFramebuffer()->Width-8;
+    if (MousePosition.X > utils->print->getFramebuffer()->Width-8) MousePosition.X = utils->print->getFramebuffer()->Width-8;
 
     if (MousePosition.Y < 0) MousePosition.Y = 0;
-    if (MousePosition.Y > utils->print.getFramebuffer()->Height-16) MousePosition.Y = utils->print.getFramebuffer()->Height-16;
+    if (MousePosition.Y > utils->print->getFramebuffer()->Height-16) MousePosition.Y = utils->print->getFramebuffer()->Height-16;
 
-    utils->mouseRenderer.clear(MousePositionl);
-    utils->mouseRenderer.render(MousePosition);
+    utils->mouseRenderer->clear(MousePositionl);
+    utils->mouseRenderer->render(MousePosition);
     MousePositionl = MousePosition;
 }

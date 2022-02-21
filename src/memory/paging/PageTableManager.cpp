@@ -5,14 +5,14 @@ PageTableManager::PageTableManager(PageTable* PML4Address){
 }
 
 void PageTableManager::MapMemory(void* virtualMemory, void* physicalMemory, UtilClasses utils){
-    PageFrameAllocator GlobalAllocator = utils.pageFrameAlloc;
+    PageFrameAllocator* GlobalAllocator = utils.pageFrameAlloc;
     PageMapIndex indexer = PageMapIndex((uint64_t)virtualMemory);
     PageDirEntry PDE;
 
     PDE = PML4->entries[indexer.PDP_i];
     PageTable* PDP;
     if (!PDE.GetFlag(PT_Flag::Present)){
-        PDP = (PageTable*)GlobalAllocator.RequestPage();
+        PDP = (PageTable*)GlobalAllocator->RequestPage();
         memoryset(PDP, 0, 0x1000);
         PDE.SetAddress((uint64_t)PDP >> 12);
         PDE.SetFlag(PT_Flag::Present, true);
@@ -28,7 +28,7 @@ void PageTableManager::MapMemory(void* virtualMemory, void* physicalMemory, Util
     PDE = PDP->entries[indexer.PD_i];
     PageTable* PD;
     if (!PDE.GetFlag(PT_Flag::Present)){
-        PD = (PageTable*)GlobalAllocator.RequestPage();
+        PD = (PageTable*)GlobalAllocator->RequestPage();
         memoryset(PD, 0, 0x1000);
         PDE.SetAddress((uint64_t)PD >> 12);
         PDE.SetFlag(PT_Flag::Present, true);
@@ -43,7 +43,7 @@ void PageTableManager::MapMemory(void* virtualMemory, void* physicalMemory, Util
     PDE = PD->entries[indexer.PT_i];
     PageTable* PT;
     if (!PDE.GetFlag(PT_Flag::Present)){
-        PT = (PageTable*)GlobalAllocator.RequestPage();
+        PT = (PageTable*)GlobalAllocator->RequestPage();
         memoryset(PT, 0, 0x1000);
         PDE.SetAddress((uint64_t)PT >> 12);
         PDE.SetFlag(PT_Flag::Present, true);

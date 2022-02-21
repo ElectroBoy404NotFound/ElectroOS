@@ -57,18 +57,18 @@ void Keyboard::onKey() {
             isRightShiftPressed = false;
             break;
         case Enter:
-            utils->print.print("\n");
+            utils->print->print("\n");
             break;
         case Spacebar:
-            utils->print.putChar(' ');
+            utils->print->putChar(' ');
             break;
         case BackSpace:
-           utils->print.clearChar(0);
+           utils->print->clearChar(0);
            break;
         default:
             char ascii = QWERTYKeyboard::Translate(scode, isLeftShiftPressed | isRightShiftPressed);
             if (ascii != 0)
-                utils->print.putChar(ascii);
+                utils->print->putChar(ascii);
     }
     
     PIC_EndMaster();
