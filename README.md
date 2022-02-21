@@ -19,7 +19,7 @@ Verson: Beta 1.0.0
 ### More then 3GB of ram for the OS causes a reboot 
 #### Status: Indentified
 ### OS text on real hardware is broken
-#### Status: Not Indentified
+#### Status: Reported
 
 ## Copywrite
 ### <a href="https://github.com/ElectroBoy404NotFound/ElectroOSOS"> © ElectroBoy404NotFound 2022 <a>
