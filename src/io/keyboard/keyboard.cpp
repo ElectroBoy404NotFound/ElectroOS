@@ -33,16 +33,13 @@ namespace QWERTYKeyboard {
 
     char Translate(uint8_t scancode, bool uppercase){
         if (scancode > 58) return 0;
-
-        if (uppercase){
-            return ASCIITable[scancode] - 32;
-        }
+        if (uppercase) return ASCIITable[scancode] - 32;
         else return ASCIITable[scancode];
     }
 }
 void Keyboard::onKey() {
+    utils->print->clearScreen(0);
     uint8_t scode = inb(0x60);
-
     switch (scode){
         case LeftShift:
             isLeftShiftPressed = true;

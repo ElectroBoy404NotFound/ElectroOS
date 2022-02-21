@@ -106,8 +106,8 @@ UtilClasses initlize(BootInfo* bootinfo) {
 
     RemapPIC();
 
-    mouse.init(&rval);
     keyboard.init(&rval);
+    mouse.init(&rval);
     panic.init(&rval);
 
     ACPI::SDTHeader* xsdt = (ACPI::SDTHeader*)(bootinfo->rsdp->XSDTAddress);

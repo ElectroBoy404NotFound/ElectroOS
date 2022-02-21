@@ -11,6 +11,7 @@ __attribute__((interrupt)) void GPFault_Handler(interrupt_frame* frame) {
 }
 
 __attribute__((interrupt)) void KB_int_Handler(interrupt_frame* frame) {
+    // panic.panic("Hello, World!");
     keyboard.onKey();
 }
 __attribute__((interrupt)) void Mouse_int_Handler(interrupt_frame* frame) {
