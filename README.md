@@ -12,7 +12,7 @@ Verson: Beta 1.0.0
 #### Setup the build envronment using ``make setup``
 ### Step 3:
 #### Build the OS using ``make build``
-### Step 3:
+### Step 4:
 #### The kernel will now be build and an .iso file will be present in ElectroOS/output and its name will be "ElectroOS.iso". In the main folder (ElectroOS), to test the build, run ``make run`` and everything should work!
 
 ## Known issues
