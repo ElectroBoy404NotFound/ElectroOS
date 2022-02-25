@@ -130,5 +130,5 @@ link:
 	@$(LD) $(LDFLAGS) -o $(BUILDDIR)/kernel.elf $(OBJS)
 
 openvscode:
-	@code ./ --user-data-dir='.vscode' --no-sandbox
+	@code ./ --no-sandbox
 .PHONY: all openvscode link kernel clean run patchnd iso build bootloader setup patch
