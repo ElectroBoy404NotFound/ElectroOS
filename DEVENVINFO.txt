@@ -1,0 +1,9 @@
+IDE: code-oss
+Version: 1.56.1
+Commit: Unknown
+Date: 2021-05-19T14:59:49.043Z
+Electron: 12.0.4
+Chrome: 89.0.4389.114
+Node.js: 14.16.0
+V8: 8.9.255.24-electron.0
+OS: Linux x64 5.10.0-kali7-amd64
