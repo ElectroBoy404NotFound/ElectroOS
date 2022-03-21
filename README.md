@@ -3,6 +3,7 @@ An OS made by ElectroBoy404NotFound
 
 How to compile?
 NOTE: Before you get started, just note that you can only build on Linux. The build is tested on the latest version of Ubuntu (20.04) only
+
 Step 1:
 Clone the repo using: git clone https://github.com/ElectroBoy404NotFound/ElectroOS and cd into it using: cd ElectroOS
 
@@ -27,6 +28,7 @@ If you are on Windows, you can run the .ISO and .IMG files by using the "run" an
 Known issues:
 
 More then 3GB of ram for the OS causes a reboot
+
 Status: Indentified
 
 Copyright (C) 2022 ElectroBoy404NotFound
