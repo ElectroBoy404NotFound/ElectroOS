@@ -1,3 +1,5 @@
+# Note: Im not working on this project currently as i dont have a linux pc
+
 # ElectroOS
 An OS made by me
 Verson: Beta 1.0.0
