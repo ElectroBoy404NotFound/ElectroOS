@@ -1,12 +1,10 @@
-# Note: Im not working on this project currently as i dont have a linux pc
-
 # ElectroOS
 An OS made by me
 Verson: Beta 1.0.0
 
 ## How to compile?
 
-### NOTE: Before you get started, just note that you can only build on Linux. The build is tested on the latest version of Ubuntu only
+### NOTE: If you are not using ubuntu linux and use windows or anyother OS, setup a virtualbox vm. I will add docker so that you can build on any platform
 
 ### Step 1:
 #### Clone the repo using ``git clone https://github.com/ElectroBoy404NotFound/ElectroOS`` and cd into it using ``cd ElectroOS``
