@@ -24,4 +24,4 @@ Verson: Beta 1.0.0
 #### Status: Reported
 
 ## Copywrite
-### <a href="https://github.com/ElectroBoy404NotFound/ElectroOSOS"> © ElectroBoy404NotFound 2022 <a>
+### <a href="https://github.com/ElectroBoy404NotFound/ElectroOS"> © ElectroBoy404NotFound 2022 <a>
