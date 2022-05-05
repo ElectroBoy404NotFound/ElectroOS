@@ -19,7 +19,7 @@ Verson: Beta 1.0.0
 ### More then 3GB of ram for the OS causes a reboot 
 #### Status: Indentified
 ### OS text on real hardware is broken
-#### Status: Reported
+#### Status: Won't fix
 ### OS reboots after pressing a key on the keyboard
 #### Status: Reported
 
