@@ -25,3 +25,4 @@ Verson: Beta 1.0.0
 
 ## Copywrite
 ### <a href="https://github.com/ElectroBoy404NotFound/ElectroOS"> © ElectroBoy404NotFound 2022 <a>
+### <a href="https://github.com/ElectroBoy404NotFound/ElectroOS"> © Kyota-exe 2021 <a> <a href="https://github.com/Kyota-exe/LuftOS/blob/master/LICENSE">(LuftOS Licence)</a>
